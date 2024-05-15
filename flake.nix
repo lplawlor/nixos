@@ -77,6 +77,8 @@
         modules = [
           # Host-specific home-manager config
           ./hosts/${hostname}/home.nix
+
+          { nixpkgs.config.allowUnfree = true; }
         ];
       };
   in {
