@@ -1,0 +1,4 @@
+# Ignore auto-generated hardware configurations
+# They must still be known to Git for the flake to work,
+# so use `git add -N hosts/<hostname>/hardware-configuration.nix`
+hardware-configuration.nix
