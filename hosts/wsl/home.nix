@@ -12,7 +12,7 @@
       packages = with pkgs; [
         devenv
         home-manager
-        neofetch
+        fastfetch
       ];
     };
 

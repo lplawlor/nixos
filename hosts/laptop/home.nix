@@ -13,7 +13,7 @@
         devenv
         discord
         home-manager
-        neofetch
+        fastfetch
         pavucontrol
         vlc
       ];
