@@ -102,7 +102,7 @@ in {
           "${modifier}+Shift+e" = "exec swaylock --daemonize";
 
           # Shotman
-          "Print" = "exec shotman --capture output";
+          "--locked Print" = "exec shotman --capture output";
           "Control+Print" = "exec shotman --capture region";
           "${modifier}+Print" = "exec shotman --capture window";
         };
