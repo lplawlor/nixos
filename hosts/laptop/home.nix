@@ -14,6 +14,8 @@
         discord
         home-manager
         fastfetch
+        networkmanagerapplet
+        networkmanager-openvpn
         pavucontrol
         vlc
       ];
