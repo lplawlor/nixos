@@ -99,7 +99,7 @@ in {
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
           # Swaylock
-          "${modifier}+Shift+e" = "exec swaylock --daemonize";
+          "${modifier}+Shift+e" = "exec ${pkgs.swaylock-effects}/bin/swaylock --daemonize";
 
           # Shotman
           "--locked Print" = "exec shotman --capture output";
@@ -168,5 +168,15 @@ in {
       };
     };
 
+  # Swayidle settings
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
+      }
+    ];
+  };
   };
 }
