@@ -50,8 +50,8 @@ in {
       };
 
       localVariables = {
-        # Use bat (without just line numbers) as the default pager
-        PAGER = "bat -n";
+        # Use bat (with plain style) as the default pager
+        PAGER = "bat --style=plain";
 
         # Use nvim as the default editor
         EDITOR = "nvim";
