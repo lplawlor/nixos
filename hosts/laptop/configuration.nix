@@ -47,6 +47,7 @@
       pipewire.enable = true;
       plymouth.enable = true;
       sddm.enable = true;
+      steam.enable = true;
       system.enable = true;
     };
   };

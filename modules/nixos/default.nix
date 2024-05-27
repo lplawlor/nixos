@@ -12,6 +12,7 @@
     ./pipewire
     ./plymouth
     ./sddm
+    ./steam
     ./system
   ];
 }
