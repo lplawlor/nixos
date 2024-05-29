@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.waybar;
 in {
@@ -56,6 +56,7 @@ in {
             tooltip-format-wifi = "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
             tooltip-format-ethernet = "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
+            on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
           };
           pulseaudio = {
             format = "{volume}% {icon}";
@@ -70,7 +71,7 @@ in {
                 "󰕾"
               ];
             };
-            on-click = "pavucontrol";
+            on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
             scroll-step = 1;
           };
           backlight = {
