@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.nixvim;
 in {
@@ -6,6 +6,11 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
+
+      # Ensure ripgrep is installed
+      extraPackages = with pkgs; [
+        ripgrep
+      ];
 
       # Allow running via "vi" or "vim"
       viAlias = true;
@@ -21,9 +26,16 @@ in {
       clipboard.register = "unnamedplus";
 
       opts = {
-        number = true;
+        # Indentation of 2
         shiftwidth = 2;
+
+        # Display relative line numbers
+        number = true;
         relativenumber = true;
+
+        # Ignore case in search patterns, unless an uppercase character is included
+        ignorecase = true;
+        smartcase = true;
       };
 
       globals = {
@@ -84,17 +96,68 @@ in {
           options = { desc = "Make split shorter"; };
         }
 
-        # Leader actions
+        # Disable the default behaviour of the leader key
         {
           action = "";
           key = "<leader>";
-          options = { desc = "No action for the leader key"; };
         }
+
+        # Neotree
         {
           action = "<Cmd>Neotree toggle<CR>";
           key = "<leader>e";
           mode = "n";
           options = { desc = "Toggle explorer"; };
+        }
+
+        # Telescope
+        {
+          action = "<Cmd>Telescope find_files<CR>";
+          key = "<leader>ff";
+          mode = "n";
+          options = { desc = "Find file"; };
+        }
+        {
+          action = "<Cmd>Telescope oldfiles<CR>";
+          key = "<leader>fo";
+          mode = "n";
+          options = { desc = "Find previously open file"; };
+        }
+        {
+          action = "<Cmd>Telescope buffers<CR>";
+          key = "<leader>fb";
+          mode = "n";
+          options = { desc = "Find buffer"; };
+        }
+        {
+          action = "<Cmd>Telescope live_grep<CR>";
+          key = "<leader>fs";
+          mode = "n";
+          options = { desc = "Find string"; };
+        }
+        {
+          action = "<Cmd>Telescope git_commits<CR>";
+          key = "<leader>gc";
+          mode = "n";
+          options = { desc = "Git commits"; };
+        }
+        {
+          action = "<Cmd>Telescope git_status<CR>";
+          key = "<leader>gs";
+          mode = "n";
+          options = { desc = "Git status"; };
+        }
+        {
+          action = "<Cmd>Telescope git_branches<CR>";
+          key = "<leader>gb";
+          mode = "n";
+          options = { desc = "Git branches"; };
+        }
+        {
+          action = "<Cmd>Telescope git_stash<CR>";
+          key = "<leader>gt";
+          mode = "n";
+          options = { desc = "Git stashes"; };
         }
       ];
 
@@ -197,7 +260,15 @@ in {
         ts-context-commentstring.enable = true;
 
         # Keymap popup
-        which-key.enable = true;
+        which-key = {
+          enable = true;
+
+          # Specify group names for common binding prefixes
+          registrations = {
+            "<leader>f" = "Find";
+            "<leader>g" = "Git";
+          };
+        };
       };
     };
   };
