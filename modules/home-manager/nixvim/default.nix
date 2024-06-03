@@ -174,11 +174,8 @@ in {
 
       # Plugins
       plugins = {
-        # Greeter
-        alpha = {
-          enable = true;
-          theme = "dashboard";
-        };
+        # Automatic session restoration
+        auto-session.enable = true;
 
         # No-delay escape from insert mode
         better-escape.enable = true;
