@@ -110,7 +110,7 @@ in {
           options = { desc = "Toggle explorer"; };
         }
 
-        # Telescope
+        # Find
         {
           action = "<Cmd>Telescope find_files<CR>";
           key = "<leader>ff";
@@ -136,6 +136,14 @@ in {
           options = { desc = "Find string"; };
         }
         {
+          action = "<Cmd>Lspsaga finder<CR>";
+          key = "<leader>fr";
+          mode = "n";
+          options = { desc = "Find references"; };
+        }
+
+        # Git
+        {
           action = "<Cmd>Telescope git_commits<CR>";
           key = "<leader>gc";
           mode = "n";
@@ -159,6 +167,56 @@ in {
           mode = "n";
           options = { desc = "Git stashes"; };
         }
+
+        # LSP
+        {
+          action = "<Cmd>Lspsaga code_action<CR>";
+          key = "<leader>la";
+          mode = "n";
+          options = { desc = "Code action"; };
+        }
+        {
+          action = "<Cmd>Lspsaga outline<CR>";
+          key = "<leader>lo";
+          mode = "n";
+          options = { desc = "Toggle outline"; };
+        }
+        {
+          action = "<Cmd>Lspsaga diagnostic_jump_prev<CR>";
+          key = "<leader>li";
+          mode = "n";
+          options = { desc = "Previous issue"; };
+        }
+        {
+          action = "<Cmd>Lspsaga diagnostic_jump_next<CR>";
+          key = "<leader>lI";
+          mode = "n";
+          options = { desc = "Next issue"; };
+        }
+        {
+          action = "<Cmd>Lspsaga peek_definition<CR>";
+          key = "<leader>ld";
+          mode = "n";
+          options = { desc = "Peek definition"; };
+        }
+        {
+          action = "<Cmd>Lspsaga peek_type_definition<CR>";
+          key = "<leader>lt";
+          mode = "n";
+          options = { desc = "Peek type definition"; };
+        }
+        {
+          action = "<Cmd>Lspsaga hover_doc<CR>";
+          key = "<leader>lh";
+          mode = "n";
+          options = { desc = "Hover documentation"; };
+        }
+        {
+          action = "<Cmd>Lspsaga rename<CR>";
+          key = "<leader>lr";
+          mode = "n";
+          options = { desc = "Rename symbol"; };
+        }
       ];
 
       # Extra files
@@ -180,10 +238,10 @@ in {
         # No-delay escape from insert mode
         better-escape.enable = true;
 
-        # Comments
+        # Commenting
         comment.enable = true;
 
-        # Git integrations
+        # Git decorations in buffers
         gitsigns.enable = true;
 
         # Indent-level indicators
@@ -193,13 +251,46 @@ in {
         lsp = {
           enable = true;
           servers = {
-            # Nix language
+            # Nix
             nixd.enable = true;
+
+            # Python
+            pyright.enable = true;
+
+            # TypeScript & JavaScript
+            tsserver.enable = true;
           };
         };
 
-        # Better auto-formatting
-        lsp-format.enable = true;
+        # LSP utilities
+        lspsaga = {
+          enable = true;
+
+          # Override the default code action menu's quit keymap
+          # In addition to the default, allow Esc to close the menu
+          codeAction.keys.quit = ["q" "<Esc>"];
+
+          # Override some of the default reference finder keymaps
+          finder.keys = {
+            # In addition to the default, allow Esc to quit the reference finder
+            quit = ["q" "<Esc>"];
+
+            # In addition to the default, allow Enter to go to the reference
+            toggleOrOpen = ["o" "<CR>"];
+          };
+
+          # Override some of the default outline keymaps
+          outline.keys = {
+            # In addition to the default, allow Esc to close the outline
+            quit = ["q" "<Esc>"];
+
+            # In addition to the default, allow Enter to jump to the node
+            jump = ["e" "<CR>"];
+          };
+
+          # Remove the lightbulb from the status (leftmost) column
+          lightbulb.sign = false;
+        };
 
         # Status line
         lualine.enable = true;
@@ -244,7 +335,12 @@ in {
         nvim-colorizer.enable = true;
 
         # Finder / picker
-        telescope.enable = true;
+        telescope = {
+          enable = true;
+          extensions = {
+            ui-select.enable = true;
+          };
+        };
 
         # Syntax highlighting
         treesitter.enable = true;
@@ -256,14 +352,15 @@ in {
         # Contextual comment style
         ts-context-commentstring.enable = true;
 
-        # Keymap popup
+        # Keymap helper popup
         which-key = {
           enable = true;
 
           # Specify group names for common binding prefixes
           registrations = {
-            "<leader>f" = "Find";
-            "<leader>g" = "Git";
+            "<leader>f" = "+Find";
+            "<leader>g" = "+Git";
+            "<leader>l" = "+LSP";
           };
         };
       };
