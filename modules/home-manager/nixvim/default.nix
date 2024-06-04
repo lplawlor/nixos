@@ -94,25 +94,25 @@ in {
         {
           action = "<Cmd>resize +2<CR>";
           key = "<C-Up>";
-          mode = "n";
+          mode = [ "n" "t" ];
           options = { desc = "Make split taller"; };
         }
         {
           action = "<Cmd>vertical resize -2<CR>";
           key = "<C-Left>";
-          mode = "n";
+          mode = [ "n" "t" ];
           options = { desc = "Make split thinner"; };
         }
         {
           action = "<Cmd>vertical resize +2<CR>";
           key = "<C-Right>";
-          mode = "n";
+          mode = [ "n" "t" ];
           options = { desc = "Make split wider"; };
         }
         {
           action = "<Cmd>resize -2<CR>";
           key = "<C-Down>";
-          mode = "n";
+          mode = [ "n" "t" ];
           options = { desc = "Make split shorter"; };
         }
 
@@ -130,6 +130,26 @@ in {
           key = "<leader>o";
           mode = "n";
           options = { desc = "Toggle outline"; };
+        }
+
+        # Terminal
+        {
+          action = "<Cmd>ToggleTerm direction='float'<CR>";
+          key = "<leader>tF";
+          mode = [ "n" "t" ];
+          options = { desc = "Toggle floating terminal"; };
+        }
+        {
+          action = "<Cmd>ToggleTerm direction='horizontal'<CR>";
+          key = "<leader>tH";
+          mode = [ "n" "t" ];
+          options = { desc = "Toggle horizontal terminal"; };
+        }
+        {
+          action = "<Cmd>ToggleTerm direction='vertical'<CR>";
+          key = "<leader>tV";
+          mode = [ "n" "t" ];
+          options = { desc = "Toggle vertical terminal"; };
         }
 
         # Find
@@ -370,6 +390,9 @@ in {
           };
         };
 
+        # Better terminal windows within Nvim
+        toggleterm.enable = true;
+
         # Syntax highlighting
         treesitter.enable = true;
         treesitter-textobjects.enable = true;
@@ -386,9 +409,10 @@ in {
 
           # Specify group names for common binding prefixes
           registrations = {
-            "<leader>f" = "+Find";
-            "<leader>g" = "+Git";
-            "<leader>l" = "+LSP";
+            "<leader>f" = { name = "+Find"; };
+            "<leader>g" = { name = "+Git"; };
+            "<leader>l" = { name = "+LSP"; };
+            "<leader>t" = { name = "+Terminal"; };
           };
         };
       };
