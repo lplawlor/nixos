@@ -44,70 +44,86 @@ in {
       };
 
       keymaps = [
+        # Buffer navigation
+        {
+          action = "<Cmd>bp<CR>";
+          key = "[b";
+          mode = "n";
+          options = { desc = "Previous buffer"; };
+        }
+        {
+          action = "<Cmd>bn<CR>";
+          key = "]b";
+          mode = "n";
+          options = { desc = "Next buffer"; };
+        }
+
         # Split navigation
         {
+          action = "<C-w>h";
           key = "<C-h>";
           mode = "n";
-          action = "<C-w>h";
           options = { desc = "Move to left split"; };
         }
         {
+          action = "<C-w>j";
           key = "<C-j>";
           mode = "n";
-          action = "<C-w>j";
           options = { desc = "Move to below split"; };
         }
         {
+          action = "<C-w>k";
           key = "<C-k>";
           mode = "n";
-          action = "<C-w>k";
           options = { desc = "Move to above split"; };
         }
         {
+          action = "<C-w>l";
           key = "<C-l>";
           mode = "n";
-          action = "<C-w>l";
           options = { desc = "Move to right split"; };
         }
 
         # Split sizing
         {
+          action = "<Cmd>resize +2<CR>";
           key = "<C-Up>";
           mode = "n";
-          action = "<Cmd>resize +2<CR>";
           options = { desc = "Make split taller"; };
         }
         {
+          action = "<Cmd>vertical resize -2<CR>";
           key = "<C-Left>";
           mode = "n";
-          action = "<Cmd>vertical resize -2<CR>";
           options = { desc = "Make split thinner"; };
         }
         {
+          action = "<Cmd>vertical resize +2<CR>";
           key = "<C-Right>";
           mode = "n";
-          action = "<Cmd>vertical resize +2<CR>";
           options = { desc = "Make split wider"; };
         }
         {
+          action = "<Cmd>resize -2<CR>";
           key = "<C-Down>";
           mode = "n";
-          action = "<Cmd>resize -2<CR>";
           options = { desc = "Make split shorter"; };
         }
 
-        # Disable the default behaviour of the leader key
-        {
-          action = "";
-          key = "<leader>";
-        }
-
-        # Neotree
+        # File explorer
         {
           action = "<Cmd>Neotree toggle<CR>";
           key = "<leader>e";
           mode = "n";
           options = { desc = "Toggle explorer"; };
+        }
+
+        # Buffer outline
+        {
+          action = "<Cmd>Lspsaga outline<CR>";
+          key = "<leader>o";
+          mode = "n";
+          options = { desc = "Toggle outline"; };
         }
 
         # Find
@@ -176,24 +192,6 @@ in {
           options = { desc = "Code action"; };
         }
         {
-          action = "<Cmd>Lspsaga outline<CR>";
-          key = "<leader>lo";
-          mode = "n";
-          options = { desc = "Toggle outline"; };
-        }
-        {
-          action = "<Cmd>Lspsaga diagnostic_jump_prev<CR>";
-          key = "<leader>li";
-          mode = "n";
-          options = { desc = "Previous issue"; };
-        }
-        {
-          action = "<Cmd>Lspsaga diagnostic_jump_next<CR>";
-          key = "<leader>lI";
-          mode = "n";
-          options = { desc = "Next issue"; };
-        }
-        {
           action = "<Cmd>Lspsaga peek_definition<CR>";
           key = "<leader>ld";
           mode = "n";
@@ -217,6 +215,27 @@ in {
           mode = "n";
           options = { desc = "Rename symbol"; };
         }
+
+        # Default mapping overrides
+        {
+          # Leader's default behaviour should be ignored
+          action = "";
+          key = "<leader>";
+        }
+        {
+          # [d should use Lspsaga to cycle diagnostics
+          action = "<Cmd>Lspsaga diagnostic_jump_prev<CR>";
+          key = "[d";
+          mode = "n";
+          options = { desc = "Previous diagnostic"; };
+        }
+        {
+          # ]d should use Lspsaga to cycle diagnostics
+          action = "<Cmd>Lspsaga diagnostic_jump_next<CR>";
+          key = "]d";
+          mode = "n";
+          options = { desc = "Next diagnostic"; };
+        }
       ];
 
       # Extra files
@@ -234,6 +253,9 @@ in {
       plugins = {
         # Automatic session restoration
         auto-session.enable = true;
+
+        # Tabline
+        barbar.enable = true;
 
         # No-delay escape from insert mode
         better-escape.enable = true;
