@@ -57,6 +57,12 @@ in {
           mode = "n";
           options = { desc = "Next buffer"; };
         }
+        {
+          action = "<Cmd>bd<CR>";
+          key = "<leader>q";
+          mode = "n";
+          options = { desc = "Close buffer"; };
+        }
 
         # Split navigation
         {
