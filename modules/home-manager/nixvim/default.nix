@@ -349,7 +349,10 @@ in {
         # File explorer
         neo-tree.enable = true;
 
-        # UI notification popups
+        # UI for messages, cmdline and popupmenu
+        noice.enable = true;
+
+        # Notification manager
         notify.enable = true;
 
         # Automatically close pairs
