@@ -11,8 +11,15 @@
       homeDirectory = "/home/lplawlor";
       packages = with pkgs; [
         devenv
-        home-manager
         fastfetch
+        gh
+        home-manager
+        lsd
+        ripgrep
+        tealdeer
+        unzip
+        wslu
+        zoxide
       ];
     };
 

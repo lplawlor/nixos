@@ -11,14 +11,8 @@
 
     # Unconfigured system packages
     environment.systemPackages = with pkgs; [
-      gh
-      lsd
-      ripgrep
-      tealdeer
-      unzip
       wget
       wl-clipboard
-      zoxide
     ];
     
     # Unconfigured system programs

@@ -12,12 +12,18 @@
       packages = with pkgs; [
         devenv
         discord
-        home-manager
         fastfetch
+        gh
+        home-manager
+        lsd
         networkmanagerapplet
         networkmanager-openvpn
         pavucontrol
+        ripgrep
+        tealdeer
+        unzip
         vlc
+        zoxide
       ];
     };
 
