@@ -18,6 +18,7 @@
 
     # Configured modules
     modules = {
+      bat.enable = true;
       direnv.enable = true;
       fonts.enable = true;
       gh.enable = true;

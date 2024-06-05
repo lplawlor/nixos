@@ -15,7 +15,6 @@
 
     # Unconfigured system packages
     environment.systemPackages = with pkgs; [
-      bat
       gh
       lsd
       ripgrep

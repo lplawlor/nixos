@@ -23,6 +23,7 @@
 
     # Configured modules
     modules = {
+      bat.enable = true;
       cursors.enable = true;
       direnv.enable = true;
       firefox.enable = true;

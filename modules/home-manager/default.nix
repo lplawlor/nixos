@@ -4,6 +4,7 @@
   };
 
   imports = [
+    ./bat
     ./cursors
     ./direnv
     ./firefox
