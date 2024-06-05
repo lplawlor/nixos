@@ -5,7 +5,7 @@ in {
   options.modules.cursors = { enable = lib.mkEnableOption "cursors"; };
   config = lib.mkIf cfg.enable {
     home.pointerCursor = {
-      name = "Catppuccin-Mocha-Mauve-Cursors";
+      name = "catppuccin-mocha-mauve-cursors";
       package = pkgs.catppuccin-cursors.mochaMauve;
       size = 16;
       gtk.enable = true;
