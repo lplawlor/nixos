@@ -36,6 +36,9 @@ in {
         # Ignore case in search patterns, unless an uppercase character is included
         ignorecase = true;
         smartcase = true;
+
+        # Not needed thanks to lualine
+        showmode = false;
       };
 
       globals = {
@@ -350,7 +353,18 @@ in {
         neo-tree.enable = true;
 
         # UI for messages, cmdline and popupmenu
-        noice.enable = true;
+        noice = {
+          enable = true;
+
+          # Needed to show @recording messages as notifications,
+          # since their usual location is gone
+          routes = [
+            {
+              view = "notify";
+              filter = { event = "msg_showmode"; };
+            }
+          ];
+        };
 
         # Notification manager
         notify.enable = true;
