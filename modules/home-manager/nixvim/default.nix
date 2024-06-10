@@ -344,7 +344,18 @@ in {
         };
 
         # Status line
-        lualine.enable = true;
+        lualine = {
+          enable = true;
+
+          # Show macro recording on status line
+          # https://github.com/nix-community/nixvim/discussions/1653#discussioncomment-9716286
+          sections.lualine_x = [
+            {
+              name.__raw = "require('noice').api.statusline.mode.get";
+              extraConfig.cond.__raw = "require('noice').api.statusline.mode.has";
+            }
+          ];
+        };
 
         # Snippet engine
         luasnip.enable = true;
@@ -353,18 +364,7 @@ in {
         neo-tree.enable = true;
 
         # UI for messages, cmdline and popupmenu
-        noice = {
-          enable = true;
-
-          # Needed to show @recording messages as notifications,
-          # since their usual location is gone
-          routes = [
-            {
-              view = "notify";
-              filter = { event = "msg_showmode"; };
-            }
-          ];
-        };
+        noice.enable = true;
 
         # Notification manager
         notify.enable = true;
